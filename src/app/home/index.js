@@ -26,11 +26,14 @@ function createHandlers ({ queries }) {
 
 function createQueries ({ db }) { 
   function loadHomePage () {
-    return db.then(client =>
+    console.log(`***Executing loadHomePage...`);
+    console.log(db); 
+    /*return db.then(client =>
       client('videos')
         .sum('view_count as videosWatched')
         .then(rows => rows[0])
-    )
+    )*/
+    return db('videos').count('view_count as videosWatched');
   }
 
   return {
@@ -38,7 +41,10 @@ function createQueries ({ db }) {
   }
 }
 
-function createHome ({ db }) { 
+function createHome ({ db }) {
+  console.log('***createHome -> db');
+  console.log(db.context);
+  console.log(`***Creating Queries...`); 
   const queries = createQueries({ db })
   const handlers = createHandlers({ queries })
 

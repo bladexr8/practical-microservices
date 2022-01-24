@@ -6,14 +6,15 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/egmicro for more book information.
 ***/
-/**
- * @description Mounts application routes into the Express application
- * @param {object} app Express app on which to mount the routes
- * @param {object} config A config object will all the parts of the system
- */
-function mountRoutes (app, config) {
-  app.use('/', config.homeApp.router)
-  //app.use('/record-viewing', config.recordViewingsApp.router)
-}
+exports.up = knex =>
+  knex.schema.createTable('videos', table => {
+    table.increments()
+    table.string('owner_id')
 
-module.exports = mountRoutes
+    table.string('name')
+    table.string('description')
+    table.string('transcoding_status')
+    table.integer('view_count').defaultsTo(0)
+  })
+
+exports.down = knex => knex.schema.dropTable('videos')

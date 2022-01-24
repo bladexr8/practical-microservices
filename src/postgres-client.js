@@ -6,14 +6,20 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/egmicro for more book information.
 ***/
-/**
- * @description Mounts application routes into the Express application
- * @param {object} app Express app on which to mount the routes
- * @param {object} config A config object will all the parts of the system
- */
-function mountRoutes (app, config) {
-  app.use('/', config.homeApp.router)
-  //app.use('/record-viewing', config.recordViewingsApp.router)
+const Bluebird = require('bluebird')
+const pg = require('pg')
+
+function createDatabase ({ connectionString }) {
+  const pool = new pg.Pool({ connectionString, Promise: Bluebird }) // (1)
+
+  function query (sql, values = []) { // (2)
+    return pool.query(sql, values)
+  }
+
+  return { // (3)
+    query,
+    stop: () => pool.end()
+  }
 }
 
-module.exports = mountRoutes
+module.exports = createDatabase
