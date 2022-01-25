@@ -27,7 +27,7 @@ function createHandlers ({ queries }) {
 function createQueries ({ db }) { 
   function loadHomePage () {
     console.log(`***Executing loadHomePage...`);
-    console.log(db); 
+    //console.log(db); 
     /*return db.then(client =>
       client('videos')
         .sum('view_count as videosWatched')

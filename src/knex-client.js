@@ -13,8 +13,8 @@ function createKnexClient({ connectionString, migrationsTableName}) {
     });
 
     console.log(`Connection String = ${connectionString}, Migrations Table = ${mTableName}`);
-    console.log('***knex-client -> client');
-    console.log(client.context);
+    //console.log('***knex-client -> client');
+    //console.log(client.context);
 
     return client;
 
