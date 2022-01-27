@@ -7,7 +7,7 @@ const createRecordViewingsApp = require('./app/record-viewings');
 
 // support for dependency injection
 function createConfig({ env }) {
-    const db = createKnexClient({
+    const knexClient = createKnexClient({
         connectionString: env.databaseUrl
     });
     const postgresClient = createPostgresClient({
@@ -18,7 +18,7 @@ function createConfig({ env }) {
     const recordViewingsApp = createRecordViewingsApp({ messageStore });
     return {
         env,
-        db,
+        db: knexClient,
         messageStore,
         homeApp,
         recordViewingsApp,
