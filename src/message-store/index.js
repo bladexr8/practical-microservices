@@ -1,7 +1,8 @@
 const createWrite = require('./write');
 
 function createMessageStore({ db }) {
-    const write = createWrite({ db })
+    console.log('***Creating Message Store...');
+    const write = createWrite({ db });
     return {
         write: write,
     }

@@ -5,6 +5,7 @@ const VersionConflictErrorRegex = /^Wrong.*Stream Version: (\d+)\)/
 const writeFunctionSql = 'SELECT message_store.write_message($1, $2, $3, $4, $5, $6)';
 
 function createWrite({ db }) {
+    console.log('***Executing createWrite...');
     return (streamName, message, expectedVersion) => {
         if (!message.type) {
             throw new Error('Messages must have a type');

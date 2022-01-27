@@ -50,7 +50,7 @@ function createHandlers({ actions }) {
 function createRecordViewings({
     messageStore
 }) {
-    const actions = createActions({ });
+    const actions = createActions({ messageStore });
     const handlers = createHandlers({ actions });
 
     const router = express.Router();

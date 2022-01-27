@@ -43,7 +43,7 @@ function createQueries ({ db }) {
 
 function createHome ({ db }) {
   console.log('***createHome -> db');
-  console.log(db.context);
+  //console.log(db.context);
   console.log(`***Creating Queries...`); 
   const queries = createQueries({ db })
   const handlers = createHandlers({ queries })
